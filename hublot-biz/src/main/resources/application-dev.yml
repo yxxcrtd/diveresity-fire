@@ -1,0 +1,6 @@
+spring:
+    http:
+        multipart:
+            enabled: false
+            location: /Users/yxx/workfile/fire/
+

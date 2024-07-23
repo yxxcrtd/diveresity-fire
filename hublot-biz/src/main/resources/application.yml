@@ -1,0 +1,93 @@
+server:
+    port: 18081
+    servlet:
+        session:
+            timeout: P1D
+    undertow:
+        io-threads: 32
+        worker-threads: 256
+        direct-buffers: true
+        buffer-size: 1024
+        buffers-per-region: 1024
+
+spring:
+    profiles:
+        active: dev
+    application:
+        name: fire
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 100MB
+    mvc:
+        static-path-pattern: /**
+    web:
+        resources:
+            static-locations: classpath:/static/, file:${spring.http.multipart.location}
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        generate-ddl: false
+        # show-sql: true
+        hibernate:
+            ddl-auto: none
+        properties:
+            hibernate:
+                # format_sql: true
+                temp:
+                    useJdbcMetadataDefaults: false
+        open-in-view: true
+
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://139.9.149.38:5432/fire
+        username: postgres
+        password: Hublot@1287
+        hikari:
+            pool-name: HikariCP
+            minimum-idle: 5
+            maximum-pool-size: 10
+            auto-commit: true
+            idle-timeout: 30000
+            max-lifetime: 120000
+            connection-timeout: 30000
+            validation-timeout: 3000
+            connection-test-query: select version()
+
+    redis:
+        host: 122.9.166.185
+        port: 26379
+        password: Hublot@redis1287
+        database: 0
+        timeout: 3000
+        lettuce:
+            pool:
+                max-active: 20
+                max-idle:  20
+                min-idle:  5
+                max-wait: 3000
+    data:
+        redis:
+            repositories:
+                enabled: false
+    cache:
+        redis:
+            cache-null-values: false
+    freemarker:
+        suffix: .ftl
+        settings:
+            classicCompatible: true
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+
+
+logging:
+    level:
+        root: INFO
+        jdbc:
+            resutlset: OFF          # 记录返回结果集（TODO 无法关闭大量的 jdbc.resultset，除非关闭日志：root: ERROR）
+            resultsettable: INFO   # 以表格形式显示结果集
+            sqltiming: INFO         # 记录SQL执行时间，可以分析耗时的sql语句
+            sqlonly: FATAL          # 使用绑定参数记录执行过的SQL语句
+            audit: FATAL            # 记录除了ResultSet外的所有JDBC调用情况
+            connection: ERROR       # 记录数据库连接和释放信息，可记录当前的数据库连接数打开与关闭，便于诊断连接是否释放

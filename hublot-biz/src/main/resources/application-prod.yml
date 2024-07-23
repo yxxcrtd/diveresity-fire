@@ -1,0 +1,5 @@
+spring:
+    http:
+        multipart:
+            enabled: false
+            location: /home/file/

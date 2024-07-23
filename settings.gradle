@@ -1,0 +1,3 @@
+rootProject.name = 'fire'
+include 'core'
+include 'hublot-biz'

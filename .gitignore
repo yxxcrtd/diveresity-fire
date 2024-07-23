@@ -1,0 +1,41 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+# Mac
+.DS_Store
+
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+hublot-biz/src/main/resources/templates/code/
+!**/src/test/**/build/
+
+# WeChat for macOS
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+
+# For vscode
+.classpath
+.project
+bin/
+out/
+.settings
+.vscode
+
+_doc/
+Code.java
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.flattened-pom.xml
+/**/application-local.yml
+/logs/
